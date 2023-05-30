@@ -1,15 +1,18 @@
 import { VideoComponent } from './components/page/item/videoComponent.js';
 import { ImageComponent } from './components/page/item/imageComponent.js';
 import { NoteComponent } from './components/page/item/noteComponent.js';
-import { Composable, PageComponent } from './components/page/pageComponent.js';
+import {
+  Composable,
+  ItemComponent,
+  PageComponent,
+} from './components/page/pageComponent.js';
 import { TodoComponent } from './components/page/item/todoComponent.js';
 import { Component } from './components/component';
 
 class App {
   private readonly page: Component & Composable;
   constructor(root: HTMLElement) {
-    // 이렇게 바로 생성하는 것보다 dependency injection을 사용하는 것이 좋음
-    this.page = new PageComponent();
+    this.page = new PageComponent(ItemComponent);
     this.page.attachTo(root);
 
     const image = new ImageComponent('image title', '../assets/image.jpg');
