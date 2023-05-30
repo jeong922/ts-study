@@ -9,19 +9,31 @@ export interface Composable {
 }
 // ItemComponent가 필요한 이유 : 재사용성 때문!
 // 나중에 버튼이 필요 없는 경우가 있을때 조건문을 만들거나 하지 않고 컴포넌트를 재사용 가능
+type OnCloseListener = () => void;
 class ItemComponent extends BaseComponent<HTMLElement> implements Composable {
+  private closeListener?: OnCloseListener;
   constructor() {
     super(`<li class="page-item">
             <section class="page-item__body">
-              <button class="page-item__controls">✖</button>
+              <div class="page-item__controls">
+                <button class="close">✖</button>
+              </div>
             </section>
           </li>`);
+    const closeBtn = this.element.querySelector('.close')! as HTMLButtonElement;
+    closeBtn.addEventListener('click', () => {
+      this.closeListener && this.closeListener();
+    });
   }
   addchild(child: Component) {
     const container = this.element.querySelector(
       '.page-item__body'
     )! as HTMLElement;
     child.attachTo(container);
+  }
+
+  setOnCloseListener(listener: OnCloseListener) {
+    this.closeListener = listener;
   }
 }
 
@@ -37,5 +49,8 @@ export class PageComponent
     const item = new ItemComponent();
     item.addchild(section);
     item.attachTo(this.element, 'beforeend');
+    item.setOnCloseListener(() => {
+      item.removeFrom(this.element);
+    });
   }
 }
