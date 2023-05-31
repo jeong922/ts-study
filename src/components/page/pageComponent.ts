@@ -5,12 +5,13 @@ import { BaseComponent, Component } from '../component.js';
 //  클래스에서 주된 규격 사항들을 인터페이스로 정의해 놓고 사용하는 곳에서 인터페이스 이름의 타입으로 지정해 두면
 //  다른 구현사항이 생기면 쉽게 다른 클래스로 변환 가능
 export interface Composable {
-  addchild(chile: Component): void;
+  addchild(child: Component): void;
 }
-// ItemComponent가 필요한 이유 : 재사용성 때문!
+// PageItemComponent 필요한 이유 : 재사용성 때문!
 // 나중에 버튼이 필요 없는 경우가 있을때 조건문을 만들거나 하지 않고 컴포넌트를 재사용 가능
 type OnCloseListener = () => void;
 
+// SectionContainer는 PageItemComponent의 규격사항 정의
 interface SectionContainer extends Component, Composable {
   setOnCloseListener(listener: OnCloseListener): void;
 }
@@ -19,7 +20,7 @@ type SectionContainerConstructor = {
   new (): SectionContainer;
 };
 
-export class ItemComponent
+export class PageItemComponent
   extends BaseComponent<HTMLElement>
   implements SectionContainer
 {
