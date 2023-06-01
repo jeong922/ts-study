@@ -38,6 +38,7 @@ export class PageItemComponent
       this.closeListener && this.closeListener();
     });
   }
+
   addchild(child: Component) {
     const container = this.element.querySelector(
       '.page-item__body'
