@@ -27,10 +27,10 @@ export class PageItemComponent
   private closeListener?: OnCloseListener;
   constructor() {
     super(`<li class="page-item">
-            <section class="page-item__body">
               <div class="page-item__controls">
                 <button class="close">✖</button>
               </div>
+            <section class="page-item__body">
             </section>
           </li>`);
     const closeBtn = this.element.querySelector('.close')! as HTMLButtonElement;

@@ -27,10 +27,12 @@ export class InputDialog
 							<button class="dialog__submit">ADD</button>
 						</div>
 					</dialog>`);
+
     const closeBtn = this.element.querySelector('.close')! as HTMLElement;
     closeBtn.addEventListener('click', () => {
       this.closeListener && this.closeListener();
     });
+
     const submitBtn = this.element.querySelector(
       '.dialog__submit'
     )! as HTMLElement;
@@ -42,6 +44,7 @@ export class InputDialog
   setOnCloseListener(listener: OnCloseListener) {
     this.closeListener = listener;
   }
+
   setOnSubmitListener(listener: OnSubmitListener) {
     this.submitListener = listener;
   }

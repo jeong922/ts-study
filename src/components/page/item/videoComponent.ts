@@ -2,8 +2,8 @@ import { BaseComponent } from '../../component.js';
 
 export class VideoComponent extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string) {
-    super(`<section>
-						<div class="video__holder">
+    super(`<section class="video">
+						<div class="video__player">
               <iframe class="video__iframe"  
                       width='940'
                       height='529'
@@ -12,7 +12,7 @@ export class VideoComponent extends BaseComponent<HTMLElement> {
                       >
               </iframe>
             </div>
-						<p class="video__title"></p>
+             <p class="page-item__title video__title"></p>
 				</section>`);
 
     const videoElement = this.element.querySelector(
