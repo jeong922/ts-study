@@ -107,12 +107,6 @@ type Person = {
   age: number;
 };
 
-// computed properties (type만 가능)
-type Person = {
-  name: string;
-  age: number;
-};
-
 type Name = Person['name'];
 
 type NumberType = number;
